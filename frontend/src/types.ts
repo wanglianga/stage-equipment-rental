@@ -53,6 +53,22 @@ export enum SettlementStatus {
   DISPUTED = 'disputed',
 }
 
+export enum AddShowRequestStatus {
+  PENDING = 'pending',
+  CHECKING = 'checking',
+  APPROVED = 'approved',
+  PARTIAL_APPROVED = 'partial_approved',
+  REJECTED = 'rejected',
+  CONFIRMED = 'confirmed',
+}
+
+export enum CheckItemStatus {
+  PASS = 'pass',
+  FAIL = 'fail',
+  WARNING = 'warning',
+  PENDING = 'pending',
+}
+
 export interface User {
   id: string;
   username: string;
@@ -180,6 +196,60 @@ export interface SettlementItem {
   createdAt: string;
 }
 
+export interface AlternativeEquipment {
+  originalEquipmentId: string;
+  originalEquipmentName: string;
+  alternativeEquipmentId: string;
+  alternativeEquipmentName: string;
+  quantity: number;
+  priceDifference: number;
+}
+
+export interface CheckResult {
+  equipmentOccupancy: CheckItemStatus;
+  venueWindow: CheckItemStatus;
+  technicianAvailability: CheckItemStatus;
+  depositSupplement: CheckItemStatus;
+  details?: {
+    equipmentConflicts?: { equipmentId: string; equipmentName: string; conflictProject: string; conflictDates: string[] }[];
+    venueConflicts?: { date: string; reason: string }[];
+    unavailableTechnicians?: { technicianId: string; name: string; reason: string }[];
+    requiredDeposit?: number;
+    currentDeposit?: number;
+    additionalDeposit?: number;
+  };
+}
+
+export interface TimeAdjustment {
+  rehearsalPeriod: { start: string; end: string };
+  outboundDate: string;
+  setupDate: string;
+  returnDate: string;
+}
+
+export interface AddShowRequest {
+  id: string;
+  projectId: string;
+  project?: Project;
+  requestedBy: string;
+  requester?: User;
+  additionalPerformanceDates: string[];
+  requestedEquipment?: { equipmentId: string; quantity: number }[];
+  status: AddShowRequestStatus;
+  checkResult?: CheckResult;
+  timeAdjustment?: TimeAdjustment;
+  approvedEquipment?: { equipmentId: string; quantity: number }[];
+  alternativeEquipments?: AlternativeEquipment[];
+  supplierStockList?: { equipmentId: string; equipmentName: string; quantity: number; supplierId: string }[];
+  alternativeConfirmed: boolean;
+  additionalDeposit: number;
+  additionalRentalFee: number;
+  rejectionReason?: string;
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const _LABELS: Record<string, string> = {
   [UserRole.BROKER]: '演出经纪',
   [UserRole.TECHNICIAN]: '剧院技术部',
@@ -199,6 +269,16 @@ const _LABELS: Record<string, string> = {
   [SettlementStatus.CONFIRMED]: '已确认',
   [SettlementStatus.PAID]: '已付款',
   [SettlementStatus.DISPUTED]: '有争议',
+  [AddShowRequestStatus.PENDING]: '待检查',
+  [AddShowRequestStatus.CHECKING]: '检查中',
+  [AddShowRequestStatus.APPROVED]: '已通过',
+  [AddShowRequestStatus.PARTIAL_APPROVED]: '部分通过',
+  [AddShowRequestStatus.REJECTED]: '已拒绝',
+  [AddShowRequestStatus.CONFIRMED]: '已确认',
+  [CheckItemStatus.PASS]: '通过',
+  [CheckItemStatus.FAIL]: '不通过',
+  [CheckItemStatus.WARNING]: '警告',
+  [CheckItemStatus.PENDING]: '待检查',
 };
 
 const _PROJECT_LABELS: Record<string, string> = {

@@ -10,6 +10,7 @@ import EquipmentPage from './pages/Equipment';
 import SchedulesPage from './pages/Schedules';
 import InspectionsPage from './pages/Inspections';
 import SettlementsPage from './pages/Settlements';
+import AddShowRequestsPage from './pages/AddShowRequests';
 import MainLayout from './components/MainLayout';
 
 const ProtectedRoutes = () => {
@@ -25,6 +26,7 @@ const ProtectedRoutes = () => {
         <Route path="/schedules" element={<SchedulesPage />} />
         <Route path="/inspections" element={<InspectionsPage />} />
         <Route path="/settlements" element={<SettlementsPage />} />
+        <Route path="/add-show" element={<AddShowRequestsPage />} />
       </Routes>
     </MainLayout>
   );

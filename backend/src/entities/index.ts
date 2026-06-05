@@ -7,3 +7,4 @@ export { Inspection, InspectionType } from './inspection.entity';
 export { InspectionItem, DamageType } from './inspection-item.entity';
 export { Settlement, SettlementStatus } from './settlement.entity';
 export { SettlementItem } from './settlement-item.entity';
+export { AddShowRequest, AddShowRequestStatus, CheckItemStatus } from './add-show-request.entity';

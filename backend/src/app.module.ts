@@ -8,8 +8,9 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { InspectionsModule } from './inspections/inspections.module';
 import { VenueModule } from './venue/venue.module';
 import { SettlementsModule } from './settlements/settlements.module';
+import { AddShowModule } from './add-show/add-show.module';
 import { SeedService } from './seed.service';
-import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, InspectionItem, Settlement, SettlementItem } from './entities';
+import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, InspectionItem, Settlement, SettlementItem, AddShowRequest } from './entities';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, Insp
       type: 'sqljs',
       location: 'data/stage-rental.db',
       autoSave: true,
-      entities: [User, Project, Equipment, Schedule, VenueConfirmation, Inspection, InspectionItem, Settlement, SettlementItem],
+      entities: [User, Project, Equipment, Schedule, VenueConfirmation, Inspection, InspectionItem, Settlement, SettlementItem, AddShowRequest],
       synchronize: true,
       logging: false,
     }),
@@ -29,6 +30,7 @@ import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, Insp
     InspectionsModule,
     VenueModule,
     SettlementsModule,
+    AddShowModule,
   ],
   providers: [SeedService],
 })

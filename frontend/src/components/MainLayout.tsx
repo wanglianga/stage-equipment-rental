@@ -12,6 +12,7 @@ import {
   DollarOutlined,
   UserOutlined,
   LogoutOutlined,
+  PlusCircleOutlined,
 } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
@@ -19,6 +20,7 @@ const { Header, Sider, Content } = Layout;
 const menuItems = [
   { key: '/', icon: <DashboardOutlined />, label: '工作台' },
   { key: '/projects', icon: <ProjectOutlined />, label: '演出项目' },
+  { key: '/add-show', icon: <PlusCircleOutlined />, label: '加场管理' },
   { key: '/equipment', icon: <ToolOutlined />, label: '设备管理' },
   { key: '/schedules', icon: <CalendarOutlined />, label: '档期排期' },
   { key: '/inspections', icon: <AuditOutlined />, label: '点验管理' },
