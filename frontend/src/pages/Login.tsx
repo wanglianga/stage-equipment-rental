@@ -1,16 +1,22 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, message, Typography } from 'antd';
 import { useAuth } from '../store';
 
 const LoginPage = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     const ok = await login(values.username, values.password);
     setLoading(false);
-    if (!ok) message.error('用户名或密码错误');
+    if (ok) {
+      navigate('/', { replace: true });
+    } else {
+      message.error('用户名或密码错误');
+    }
   };
 
   return (

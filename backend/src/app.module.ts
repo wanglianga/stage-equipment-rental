@@ -8,6 +8,7 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { InspectionsModule } from './inspections/inspections.module';
 import { VenueModule } from './venue/venue.module';
 import { SettlementsModule } from './settlements/settlements.module';
+import { SeedService } from './seed.service';
 import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, InspectionItem, Settlement, SettlementItem } from './entities';
 
 @Module({
@@ -29,5 +30,6 @@ import { User, Project, Equipment, Schedule, VenueConfirmation, Inspection, Insp
     VenueModule,
     SettlementsModule,
   ],
+  providers: [SeedService],
 })
 export class AppModule {}

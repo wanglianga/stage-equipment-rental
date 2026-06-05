@@ -13,17 +13,6 @@ const DashboardPage = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [schedules, setSchedules] = useState<Schedule[]>([]);
   const [equipment, setEquipment] = useState<Equipment[]>([]);
-  const [initialized, setInitialized] = useState(false);
-
-  useEffect(() => {
-    const init = async () => {
-      if (initialized) return;
-      await api.post('/users/seed');
-      await api.post('/equipment/seed');
-      setInitialized(true);
-    };
-    init();
-  }, [initialized]);
 
   useEffect(() => {
     api.get('/projects').then((r) => setProjects(r.data));
